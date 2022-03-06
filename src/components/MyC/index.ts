@@ -1,0 +1,1 @@
+export { MyC } from "./MyC";

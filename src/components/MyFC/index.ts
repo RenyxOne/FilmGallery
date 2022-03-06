@@ -1,0 +1,1 @@
+export { MyFC } from "./MyFC";
