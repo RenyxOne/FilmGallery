@@ -1,0 +1,36 @@
+@import './_null';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
+$primary-red: #F65261;
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  background-color: #232323;
+  font-size: 20px;
+  font-family: Mons;
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 600px;
+}
+.main-title {
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 49px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: white;
+}
+
+
+@import 'components/Footer/footer';
+@import 'components/NoMatches/no-matches';
+@import './components/Logo/logo';
+@import './components/MovieDetails/movie-details';

@@ -24,6 +24,11 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
     'no-restricted-syntax': 'off',
+    'no-unused-vars': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-shadow': 'off',
+    '@typescript-eslint/naming-convention': 'off',
+    'class-methods-use-this': 'off',
+    '@typescript-eslint/no-unused-vars': 'off'
   },
 };

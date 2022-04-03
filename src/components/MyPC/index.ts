@@ -1,1 +1,0 @@
-export { MyPC } from "./MyPC";

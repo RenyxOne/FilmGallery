@@ -1,13 +1,16 @@
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-module.exports = {
+  module.exports = {
   context: resolve(__dirname, "../src"),
   entry: {
-    app: './app.tsx',
+    app: './index.tsx',
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
+    plugins: [new TsconfigPathsPlugin({})]
   },
   module: {
     rules: [
@@ -42,10 +45,21 @@ module.exports = {
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: './html/index.html',
-    filename: 'index.html',
-    title: 'MyReactApp',
-  }),],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './html/index.html',
+      filename: 'index.html',
+      title: 'MyReactApp',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "./assets",
+          to: "assets",
+          noErrorOnMissing: true
+        }
+      ],
+    }),
+  ],
 
 }

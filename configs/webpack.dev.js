@@ -5,7 +5,7 @@ module.exports = merge(commonConfig, {
   mode: "development",
   entry: [
     "webpack-dev-server/client?http://localhost:8080",
-    "./app.tsx",
+    "./index.tsx",
   ],
   devServer: {
     hot: "only",

@@ -5,7 +5,7 @@ const commonConfig = require('./webpack.common');
 
 module.exports = merge(commonConfig, {
   mode: 'production',
-  entry: './app.tsx',
+  entry: './App.tsx',
   output: {
     filename: 'js/bundle.[contenthash].min.js',
     path: resolve(__dirname, '../dist'),

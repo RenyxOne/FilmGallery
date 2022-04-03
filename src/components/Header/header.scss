@@ -1,0 +1,18 @@
+$bg-color: #3f3c3c;
+
+.header {
+  height: 400px;
+  background: $bg-color;
+  padding: 0 56px;
+
+  &--movieDetails {
+    background-color: rgb(49, 49, 49);
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px 30px;
+    height: auto;
+  }
+
+  &__logo {
+    display: inline-block;
+  }
+}

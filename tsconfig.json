@@ -7,12 +7,24 @@
     "strict": true,
     "sourceMap": true,
     "jsx": "react",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@constants/*": ["src/constants/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@models/*": ["src/models/*"],
+      "@reducers/*": ["src/reducers/*"],
+      "@actions/*": ["src/actions/*"],
+      "@enums/*": ["src/enums/*"]
+    }
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
     "src"
-  ]
+  ],
+
 }
