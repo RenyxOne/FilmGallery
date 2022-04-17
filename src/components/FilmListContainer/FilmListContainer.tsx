@@ -1,16 +1,19 @@
 import React from "react";
 import {NoMatches} from "@components/NoMatches";
-import {IContentProps} from "@interfaces/interfaces";
-import {FilmList} from "@components/FilmList";
+import {FilmData} from "@interfaces/interfaces";
+import {CardsList} from "@components/CardsList";
+import {FilmCardFactory} from "@components/FilmCard";
 
-const FilmListContainer = (props: IContentProps) => (
-  props.filmsData ?
+type FilmListContainerProps = {
+  filmsData: {films: FilmData[]}
+}
+
+const FilmListContainer: React.FC<FilmListContainerProps> = ({filmsData}) => (
+  filmsData ?
     (
-      <FilmList
-        screen={props.screen}
-        setScreen={props.setScreen}
-        filmsData={props.filmsData?.films}
-      />
+      <CardsList>
+        <FilmCardFactory filmsData={filmsData.films}/>
+      </CardsList>
     ) : (
       <NoMatches/>
     )

@@ -1,20 +1,16 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import {Screen} from "@enums/enum";
-import {changeScreen} from "@actions/changeScreen";
-import './back-btn.scss'
+import {ScreenFilmList} from "@enums/enum";
+import {ChangeScreenAction} from "@actions/ChangeScreenAction";
+import {BackButtonDumb} from "./BackButtonDumb"
 
 const BackButton = () => {
   const dispatch = useDispatch();
   const handleScreenChange = () => {
-    dispatch(changeScreen(Screen.FilmsList));
+    dispatch(ChangeScreenAction(ScreenFilmList));
   };
 
-  return (
-    <button className="back-btn" onClick={handleScreenChange}>
-      Back
-    </button>
-  );
+  return <BackButtonDumb onClick={handleScreenChange}/>
 }
 
 export {BackButton}

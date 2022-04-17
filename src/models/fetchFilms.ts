@@ -1,31 +1,32 @@
 import {Dispatch} from "react";
-import {setFilms} from "../actions/setMovies";
-import {Search} from "../enums/enum";
+import {SetFilmsAction} from "@actions/SetFilmsAction";
+import {Search, SearchByTitle, Sort} from "@enums/enum";
+import {defaultResponse} from "@models/defaultResponse";
 
-const fetchFilms = (
-  sortBy: string = 'vote_average',
-  searchType: string = Search.Title,
-  searchInput: { value: string } | string = {value: ''}
+export const fetchFilms = (
+  sortBy: Sort = 'vote_average',
+  searchType: Search = SearchByTitle,
+  searchInput: string = ''
 ) => {
   const myHeader = new Headers();
   myHeader.append('Access-Control-Allow-Origin', '*');
-  return (dispatcher: Dispatch<{}>) => {
-    const searchInputText = typeof searchInput === 'string' ? searchInput : searchInput.value;
-    const url = `https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortBy}&searchBy=${searchType}&search=${searchInputText}`;
-
-    fetch(url, {
+  function fetcher (dispatch: Dispatch<{}>) {
+    const url = `https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortBy}&searchBy=${searchType}${searchInput ? `&search=${searchInput}`: ''}`;
+    const data = fetch(url, {
       mode: 'cors',
       headers: myHeader,
       method: 'GET'
     })
-      .then(data => {
-        data.json()
-          .then(response => {
-            dispatcher(setFilms(response.data));
-          })
+      .then(data => data.json())
+      .then(json => {
+        dispatch(SetFilmsAction(json.data));
+        localStorage.setItem('url',JSON.stringify(json.data));
+      })
+      .catch(error => {
+        const cachedData = localStorage.getItem('url');
+        dispatch(SetFilmsAction(cachedData ? JSON.parse(cachedData) : defaultResponse.data))
       });
-
+    ;
   }
+  return fetcher;
 }
-
-export {fetchFilms}

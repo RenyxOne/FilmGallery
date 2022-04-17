@@ -1,0 +1,18 @@
+.sort-results {
+  background-color: rgb(197, 197, 197);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__sort_by {
+    display: flex;
+    justify-self: flex-end;
+    margin-right: 0;
+    margin-left: auto;
+
+    & span {
+      margin-right: 20px;
+    }
+  }
+}

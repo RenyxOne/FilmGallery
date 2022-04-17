@@ -16,7 +16,7 @@
       "@interfaces/*": ["src/interfaces/*"],
       "@models/*": ["src/models/*"],
       "@reducers/*": ["src/reducers/*"],
-      "@actions/*": ["src/actions/*"],
+      "@actions/*": ["src/reducers/actions/*"],
       "@enums/*": ["src/enums/*"]
     }
   },

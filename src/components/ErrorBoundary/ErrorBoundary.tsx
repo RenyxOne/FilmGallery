@@ -1,14 +1,14 @@
 import React, {Component, ReactNode, ErrorInfo } from 'react'
 
-interface Props {
+type Props = {
   children: ReactNode
 }
 
-interface State {
+type State = {
   hasError: boolean
 }
 
-class ErrorBoundary extends Component<Props, State> {
+export class ErrorBoundary extends Component<Props, State> {
   public state: State = {
     hasError: false,
   }
@@ -29,5 +29,3 @@ class ErrorBoundary extends Component<Props, State> {
     return this.props.children
   }
 }
-
-export { ErrorBoundary }

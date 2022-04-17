@@ -1,7 +1,7 @@
 import React from 'react';
 import {Screen} from "../enums/enum";
 
-interface FilmData {
+type FilmData = {
   id?: number;
   title: string;
   tagline?: string;
@@ -15,31 +15,25 @@ interface FilmData {
   genres: string[];
   runtime?: number;
 }
-interface FilmCardProps extends Omit<FilmData, 'genres'> {
+type FilmCardProps = Omit<FilmData, 'genres'> & {
   screen: string;
   setScreen: React.Dispatch<React.SetStateAction<Screen>>;
   genres: string;
+  film: FilmData;
 }
 
-interface IContentProps {
+type IContentProps = {
   screen: string;
   setScreen: React.Dispatch<React.SetStateAction<Screen>>;
   filmsData: {films: FilmData[]};
 }
 
-interface IFilmListProps {
-  screen: string;
-  setScreen: React.Dispatch<React.SetStateAction<Screen>>;
+type FilmListProps = {
   filmsData: FilmData[];
 }
 
-interface MyState {
+type MyState = {
   screen: Screen;
-}
-
-type Action = {
-  type: string,
-  info: unknown
 }
 
 export {
@@ -47,6 +41,5 @@ export {
   IContentProps,
   MyState,
   FilmCardProps,
-  IFilmListProps,
-  Action
+  FilmListProps,
 };

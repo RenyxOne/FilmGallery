@@ -1,25 +1,12 @@
-import {
-  SET_MOVIES,
-  SORT_MODE,
-  CURRENT_MOVIE,
-  SEARCH_VALUE,
-  SEARCH_MODE,
-  CHANGE_SCREEN
-} from '../constants/actions'
+export const ScreenFilmList = 'filmList;'
+export const ScreenFilm = 'film'
+export type Screen = typeof ScreenFilmList | typeof ScreenFilm;
 
-enum Screen {
-  FilmsList = 'filmList',
-  Film = 'movie',
-}
+export const SearchByTitle = 'title';
+export const SearchByGenres = 'genres';
+export type Search = typeof SearchByTitle | typeof SearchByGenres;
 
-enum Search {
-  Title = 'title',
-  Genre = 'genres',
-}
 
-enum Sort {
-  ReleaseDate = 'release_date',
-  Rating = 'vote_average',
-}
-
-export {Screen, Search, Sort};
+export const SortByReleaseDate = 'release_date';
+export const SortByRating = 'vote_average';
+export type Sort = typeof SortByReleaseDate | typeof SortByRating;

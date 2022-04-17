@@ -1,11 +1,11 @@
 import React from "react";
 
-const Logo = () => (
-  <p className='logo'>
+const Logo: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({className}) => (
+  <div className={`logo ${className || ''}`}>
     My
     <span className='logo logo-regular'>Film</span>
     Gallery
-  </p>
+  </div>
 )
 
 export {Logo}

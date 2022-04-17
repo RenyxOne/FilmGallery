@@ -1,34 +1,42 @@
 import React, {useState} from "react";
-import {useDispatch} from "react-redux";
-import {Search, Sort} from "@enums/enum";
+import {useDispatch, useSelector} from "react-redux";
+import {Search, SearchByGenres, SearchByTitle, Sort} from "@enums/enum";
 import {FilmData} from "@interfaces/interfaces";
-import {searchValue} from "@actions/searchInput";
+import {SearchValueAction} from "@actions/SearchValueAction";
 import {fetchFilms} from "@models/fetchFilms";
-import {SearchModeButtonContainer} from "@components/SearchModeButtonContainer";
-import {SortResultsContainer} from "@components/SortResultsContainer";
 import './search-form.scss'
+import {SearchModeAction} from "@actions/SearchModeAction";
+import {SearchFormDumb} from "@components/SearchForm/SearchFormDumb";
 
-
-const SearchForm = (props: {
-  sortBy: Sort;
-  searchType: Search;
+type SearchFormProps = {
+  sortMode: Sort;
+  searchMode: Search;
   movieList: FilmData[];
-}) => {
-  const inputState = {value: ''};
+}
+
+
+const SearchForm: React.FC<SearchFormProps> = ({sortMode, searchMode}) => {
+  const inputState = '';
   const [newInputState, setInputState] = useState(inputState);
   const dispatch = useDispatch();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputState({value: event.target.value});
+  const handleTitleClick = () => {
+    dispatch(SearchModeAction(SearchByTitle));
+  };
+  const handleGenreClick = () => {
+    dispatch(SearchModeAction(SearchByGenres));
   };
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputState(event.target.value);
+  };
   const handleSearch = () => {
-    dispatch(searchValue(newInputState));
-    if (props.searchType === Search.Title) {
-      dispatch(fetchFilms(props.sortBy, Search.Title, newInputState));
+    dispatch(SearchValueAction(newInputState));
+    if (searchMode === SearchByTitle) {
+      dispatch(fetchFilms(sortMode, SearchByTitle, newInputState));
     }
-    if (props.searchType === Search.Genre) {
-      dispatch(fetchFilms(props.sortBy, Search.Genre, newInputState));
+    if (searchMode === SearchByGenres) {
+      dispatch(fetchFilms(sortMode, SearchByGenres, newInputState));
     }
   };
 
@@ -37,40 +45,15 @@ const SearchForm = (props: {
       handleSearch();
     }
   }
-  return (
-    <>
-      <div className="search-container">
-        <div className="search-form">
-          <label htmlFor="search-form__label" className="search__title">
-            <h1 className='main-title'>FIND YOUR MOVIE</h1>
-          </label>
-          <input
-            type="search"
-            id="site-search"
-            name="q"
-            placeholder="Your search input"
-            className="search-form__input"
-            onChange={handleChange}
-            onKeyPress={handleEnterKeyPress}
-          />
-          <div className="search-form__additions">
-            <div className="search-form__search-by">
-              <span>search by </span>
-              <SearchModeButtonContainer/>
-            </div>
-            <button
-              type="button"
-              className="search-form__button"
-              onClick={handleSearch}
-            >
-              Search
-            </button>
-          </div>
-        </div>
-      </div>
-      <SortResultsContainer filmList={props.movieList} />
-    </>
-  );
+
+  return <SearchFormDumb
+    handleChange={handleChange}
+    handleEnterKeyPress={handleEnterKeyPress}
+    searchMode={searchMode}
+    searchByTitleClickHandler={handleTitleClick}
+    searchByGenreClickHandler={handleGenreClick}
+    handleSearch={handleSearch}
+  />
 }
 
 export {SearchForm}

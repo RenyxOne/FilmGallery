@@ -1,66 +1,82 @@
-import {Screen, Search, Sort} from "../enums/enum";
-import {Action, FilmData} from "../interfaces/interfaces";
+import {SetFilmsActionType} from "@actions/SetFilmsAction";
 import {
-  CHANGE_SCREEN,
-  CURRENT_MOVIE,
-  SET_MOVIES,
-  SEARCH_MODE,
-  SEARCH_VALUE,
-  SORT_MODE
-} from "../constants/actions";
+  ChangeScreenActionConst,
+  CurrentFilmActionConst,
+  SearchModeActionConst,
+  SearchValueActionConst,
+  SetFilmsActionConst,
+  SortModeActionConst
+} from "@actions/ActionTypes";
+import {ChangeScreenActionType} from "@actions/ChangeScreenAction";
+import {CurrentFilmActionType} from "@actions/CurrentFilmAction";
+import {SearchValueActionType} from "@actions/SearchValueAction";
+import {SearchModeActionType} from "@actions/SearchModeAction";
+import {SortModeActionType} from "@actions/SortModeAction";
+import {Screen, ScreenFilmList, Search, SearchByTitle, Sort, SortByRating} from "@enums/enum";
+import {FilmData} from "@interfaces/interfaces";
 
-const initialState = {
-  screen: Screen.FilmsList,
-  searchMode: Search.Title,
-  sortMode: Sort.Rating,
-};
+export type RootAction =
+  ChangeScreenActionType |
+  CurrentFilmActionType |
+  SearchModeActionType |
+  SearchValueActionType |
+  SetFilmsActionType |
+  SortModeActionType
 
-export interface State {
+export type State = {
   screen: Screen;
   filmsData: {films: FilmData[]};
   searchMode: Search;
   sortMode: Sort;
-  currentFilm: FilmData;
-  searchInput: string;
+  currentFilm?: FilmData;
+  searchValue: string;
 }
 
-const reducer = (state: State, action: Action) => {
-  const currentState = state || initialState;
+const initialState: State = {
+  screen: ScreenFilmList,
+  searchMode: SearchByTitle,
+  sortMode: SortByRating,
+  filmsData: {films: []},
+  searchValue: ''
+};
+
+const reducer = (inputState: State, action: RootAction) => {
+  const state = inputState || initialState;
   switch (action.type) {
-    case CHANGE_SCREEN:
+    case ChangeScreenActionConst:
       return {
         ...state,
-        screen: action.info,
+        screen: action.payload,
       };
-    case SET_MOVIES:
+    case SetFilmsActionConst:
       return {
         ...state,
-        filmsData: {films: action.info},
+        filmsData: {films: action.payload},
       };
-    case SEARCH_MODE:
+    case SearchModeActionConst:
       return {
         ...state,
-        searchMode: action.info,
+        searchMode: action.payload,
       };
-    case SORT_MODE:
+    case SortModeActionConst:
       return {
         ...state,
-        sortMode: action.info,
+        sortMode: action.payload,
       };
-    case CURRENT_MOVIE: {
+    case CurrentFilmActionConst: {
       return {
         ...state,
-        currentFilm: action.info,
+        currentFilm: action.payload,
       };
     }
-    case SEARCH_VALUE: {
+    case SearchValueActionConst: {
       return {
         ...state,
-        searchInput: action.info,
+        searchValue: action.payload,
       };
     }
     default:
-      return currentState;
+      return state;
   }
 };
 

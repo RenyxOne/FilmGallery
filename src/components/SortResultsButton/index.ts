@@ -1,1 +1,0 @@
-export {SortResultsButton} from './SortResultsButton'

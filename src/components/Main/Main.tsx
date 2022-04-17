@@ -1,21 +1,19 @@
 import React from 'react'
-import {IContentProps} from "@interfaces/interfaces";
+import {FilmData} from "@interfaces/interfaces";
 import {FilmListContainer} from "@components/FilmListContainer";
 
-const Main = (props: IContentProps) => (
+type mainProps = {
+  filmsData: {films: FilmData[]}
+}
+
+export const Main: React.FC<mainProps> = ({filmsData}) => (
     <>
       <main className="main">
         <div className="film-area">
           <FilmListContainer
-            screen={props.screen}
-            setScreen={props.setScreen}
-            filmsData={props.filmsData}
+            filmsData={filmsData}
           />
         </div>
       </main>
     </>
   )
-
-const MainMemo = React.memo(Main);
-
-export {MainMemo as Main}
