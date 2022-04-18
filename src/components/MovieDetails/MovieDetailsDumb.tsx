@@ -15,7 +15,9 @@ type MovieDetailsDumbProps = {
 export const MovieDetailsDumb: React.FC<MovieDetailsDumbProps> = (
   {image, title, score, genres, releaseDate, duration, description}
 ) => <>
-  <BackButton></BackButton>
+  <div className="movie-details__back-btn">
+    <BackButton/>
+  </div>
   <div className="movie-details-wrapper">
     <div className="movie-details__image-container">
       <MySmartImage
@@ -37,7 +39,7 @@ export const MovieDetailsDumb: React.FC<MovieDetailsDumbProps> = (
         Genres: {genres}
       </div>
       <div className="movie-details__text">
-        Release Data: {releaseDate.substring(0, 4)}
+        Release Data: {releaseDate}
       </div>
       <div className="movie-details__text">
         Duration: {duration} min

@@ -1,4 +1,5 @@
 import React from "react";
+import './film-card.scss';
 
 type FilmCardFooterProps = {
   title: string;

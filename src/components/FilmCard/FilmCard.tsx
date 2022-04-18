@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useDispatch} from "react-redux";
 import {FilmData} from "@interfaces/interfaces";
 import {ChangeScreenAction} from "@actions/ChangeScreenAction";

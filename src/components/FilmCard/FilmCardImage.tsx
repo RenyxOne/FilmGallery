@@ -1,5 +1,6 @@
 import React from "react";
 import {MySmartImage} from "@components/MySmartImage/MySmartImage";
+import './film-card.scss';
 
 type FilmCardImageProps = {
   image: string;

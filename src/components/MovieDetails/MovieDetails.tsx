@@ -14,7 +14,7 @@ const MovieDetails = () => {
       title={currentFilm.title}
       score={currentFilm.vote_average}
       genres={genreString}
-      releaseDate={currentFilm.release_date}
+      releaseDate={currentFilm.release_date.substring(0, 4)}
       duration={currentFilm.runtime || 0}
       description={currentFilm.overview || ''}/> : <></>;
 }

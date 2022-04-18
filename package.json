@@ -9,7 +9,9 @@
     "build:dev": "webpack --config=configs/webpack.dev.js",
     "build:prod": "webpack --config=configs/webpack.prod.js",
     "stylelint": "stylelint \"**/*{.css,.scss}\"",
-    "stylelint:fix": "stylelint \"**/*{.css,.scss}\" --fix"
+    "stylelint:fix": "stylelint \"**/*{.css,.scss}\" --fix",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "author": "Ruslan Shamsutdinov",
   "license": "ISC",
@@ -18,6 +20,17 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
+    "@storybook/addon-actions": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/addon-interactions": "^6.4.22",
+    "@storybook/addon-links": "^6.4.22",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/builder-webpack5": "^6.4.22",
+    "@storybook/manager-webpack5": "^6.4.22",
+    "@storybook/preset-create-react-app": "^4.1.0",
+    "@storybook/preset-scss": "^1.0.3",
+    "@storybook/react": "^6.4.22",
+    "@storybook/testing-library": "^0.0.9",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.13",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
@@ -34,6 +47,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",
+    "postcss": "^8.4.12",
     "postcss-loader": "^6.2.1",
     "postcss-preset-env": "^7.4.2",
     "postcss-scss": "^4.0.3",
@@ -62,7 +76,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.8",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "storybook-addon-sass-postcss": "^0.1.1"
   },
   "browserslist": [
     ">0.2%",
